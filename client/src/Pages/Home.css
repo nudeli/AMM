@@ -39,3 +39,19 @@
 .nav-button:hover {
   background-color: #45a049; /* Darker shade on hover */
 }
+
+.mint-button {
+  display: inline-block;
+  background-color: #4caf50; /* Example color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 20px;
+  text-decoration: none; /* Removes underline from links */
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.mint-button:hover {
+background-color: #45a049; /* Darker shade on hover */
+}

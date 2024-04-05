@@ -1,7 +1,17 @@
 import { NavLink } from "react-router-dom";
+import { ethers } from "ethers";
 import './Home.css';
 
-function Home() {
+function Home({state}) {
+
+    const mintTokens = async()=>{
+        const {walletAddress, contractTokenOne, contractTokenTwo}=state;
+
+        const bigNumberVal = ethers.utils.parseUnits("100", 18);
+        const transactionOne = await contractTokenOne.mint(walletAddress, bigNumberVal)
+        transactionOne.wait();
+    }
+
     return (
         <div className="home-container">
             <h1>AMM</h1>
@@ -16,7 +26,8 @@ function Home() {
                 <NavLink to={"/Swap"} className="nav-button">
                     Swap Token
                 </NavLink>
-            </div>
+            </div><br></br>
+            <button className="mint-button" onClick={mintTokens}>Mint Tokens</button>
         </div>
     );
 }

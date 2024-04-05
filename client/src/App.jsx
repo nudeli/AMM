@@ -69,10 +69,6 @@ function App() {
           signer
         );
 
-        console.log(contractAMM)
-        console.log(contractTokenOne)
-        console.log(contractTokenTwo)
-
         setState({provider,signer,walletAddress,contractAMM,contractTokenOne,contractTokenTwo});
        
       }catch(error){
