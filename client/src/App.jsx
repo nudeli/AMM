@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react';
-import abi from "./contractJson/AMM.json";
+import abiAMM from "./contractJson/AMM.json";
+import abiToken from "./contractJson/ERC20.json";
 import {ethers} from "ethers";
 import './App.css';
 import { BrowserRouter } from "react-router-dom";
@@ -9,7 +10,10 @@ function App() {
   const [state,setState]=useState({
     provider:null,
     signer:null,
-    contract:null
+    walletAddress:null,
+    contractAMM:null,
+    contractTokenOne:null,
+    contractTokenTwo:null
   })
 
   const appStyle = {
@@ -23,8 +27,12 @@ function App() {
   useEffect(()=>{
     const template=async()=>{
 
-      const contractAddres = "0xb4e33EAbf996fBD9F963DB9EF7230c83Aa1Ac9C2";
-      const contractABI=abi.abi;
+      const contractAddressAMM = "0x5b24597Cd3F4D2cB63c3e36224afeBD026DF5F77";
+      const contractAddressTokenOne = "0x4D8ec41B11aa0e21c998C53D1D43A72BCCf0Fe00";
+      const contractAddressTokenTwo = "0xce70B60b9A2e75C7E803A926AFa98b0F63406D57";
+
+      const contractAbiAMM = abiAMM.abi;
+      const contractAbiToken = abiToken.abi
       //Metamask part
       //1. In order do transactions on goerli testnet
       //2. Metmask consists of infura api which actually help in connectig to the blockhain
@@ -39,16 +47,33 @@ function App() {
           window.location.reload()
         })
         setAccount(account);
+        const walletAddress = account[0]
         const provider = new ethers.providers.Web3Provider(ethereum);//read the Blockchain
         const signer =  provider.getSigner(); //write the blockchain
         
-        const contract = new ethers.Contract(
-          contractAddres,
-          contractABI,
+        const contractAMM = new ethers.Contract(
+          contractAddressAMM,
+          contractAbiAMM,
           signer
         );
 
-        setState({provider,signer,contract});
+        const contractTokenOne = new ethers.Contract(
+          contractAddressTokenOne,
+          contractAbiToken,
+          signer
+        );
+
+        const contractTokenTwo = new ethers.Contract(
+          contractAddressTokenTwo,
+          contractAbiToken,
+          signer
+        );
+
+        console.log(contractAMM)
+        console.log(contractTokenOne)
+        console.log(contractTokenTwo)
+
+        setState({provider,signer,walletAddress,contractAMM,contractTokenOne,contractTokenTwo});
        
       }catch(error){
         console.log(error)

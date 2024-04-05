@@ -33,6 +33,27 @@ contract AMM {
         reserveTwo = _reserveTwo;
     }
 
+    function calculateSwap(address _tokenIn, uint256 _amountIn)
+        external view
+        returns (uint256 amountOut)
+    {
+        require(
+            _tokenIn == address(tokenOne) || _tokenIn == address(tokenTwo),
+            "invalid token"
+        );
+        require(_amountIn > 0, "amount in = 0");
+
+        bool isTokenOne = _tokenIn == address(tokenOne);
+        (uint256 reserveIn, uint256 reserveOut)
+        = isTokenOne
+            ? (reserveOne, reserveTwo)
+            : (reserveTwo, reserveOne);
+
+        // 0.3% fee
+        uint256 amountInWithFee = (_amountIn * 997) / 1000;
+        amountOut = (reserveOut * amountInWithFee) / (reserveIn + amountInWithFee);
+    }
+
     function swap(address _tokenIn, uint256 _amountIn)
         external
         returns (uint256 amountOut)
