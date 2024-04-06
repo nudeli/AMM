@@ -23,6 +23,9 @@ function Home({state}) {
                 <NavLink to={"/AddLiquidity"} className="nav-button">
                     Add Liqudity
                 </NavLink>
+                <NavLink to={"/RemoveLiquidity"} className="nav-button">
+                    Remove Liqudity
+                </NavLink>
                 <NavLink to={"/Swap"} className="nav-button">
                     Swap Token
                 </NavLink>
