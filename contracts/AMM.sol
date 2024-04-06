@@ -2,30 +2,20 @@
 pragma solidity ^0.8.20;
 
 import "./IERC20.sol";
+import "./ERC20.sol";
 
-contract AMM {
+contract AMM is ERC20 {
     IERC20 public immutable tokenOne;
     IERC20 public immutable tokenTwo;
 
     uint256 public reserveOne;
     uint256 public reserveTwo;
-
-    uint256 public totalSupply;
-    mapping(address => uint256) public balanceOf;
-
-    constructor(address _tokenOne, address _tokenTwo) {
+    
+    constructor(address _tokenOne, address _tokenTwo) 
+        ERC20("4300 Liquidity Provider", "4300LPT", 18)
+    {
         tokenOne = IERC20(_tokenOne);
         tokenTwo = IERC20(_tokenTwo);
-    }
-
-    function _mint(address _to, uint256 _amount) private {
-        balanceOf[_to] += _amount;
-        totalSupply += _amount;
-    }
-
-    function _burn(address _from, uint256 _amount) private {
-        balanceOf[_from] -= _amount;
-        totalSupply -= _amount;
     }
 
     function _update(uint256 _reserveOne, uint256 _reserveTwo) private {
@@ -100,6 +90,7 @@ contract AMM {
             );
         }
         require(shares > 0, "shares = 0");
+
         _mint(msg.sender, shares);
 
         _update(
