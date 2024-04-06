@@ -65,10 +65,30 @@ function Swap({state}) {
         const balanceDec= ethers.utils.formatUnits(balance, 18);
         console.log(balanceDec)
 
-        
         if (parseInt(payAmount) > balanceDec) {
             alert("You do not have enough tokens in your balance!");
             return;
+        }
+
+        const allowanceOne = await contractTokenOne.allowance(walletAddress, contractAMM.address);
+        const allowanceTwo = await contractTokenTwo.allowance(walletAddress, contractAMM.address);
+
+        const amount = ethers.utils.parseUnits("1000", 18);
+
+        if (allowanceOne.eq(0)) {
+            const tx = await contractTokenOne.approve(contractAMM.address, amount);
+            await tx.wait();
+            console.log('Approval successful!');
+        } else {
+            console.log('Allowance already set. Skipping approval.');
+        }
+
+        if (allowanceTwo.eq(0)) {
+            const tx = await contractTokenTwo.approve(contractAMM.address, amount);
+            await tx.wait();
+            console.log('Approval successful!');
+        } else {
+            console.log('Allowance already set. Skipping approval.');
         }
 
 

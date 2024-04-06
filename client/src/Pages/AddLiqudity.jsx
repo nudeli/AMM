@@ -40,6 +40,27 @@ function AddLiquidity({state}) {
             return;
         }
 
+        const allowanceOne = await contractTokenOne.allowance(walletAddress, contractAMM.address);
+        const allowanceTwo = await contractTokenTwo.allowance(walletAddress, contractAMM.address);
+
+        const amount = ethers.utils.parseUnits("1000", 18);
+
+        if (allowanceOne.eq(0)) {
+            const tx = await contractTokenOne.approve(contractAMM.address, amount);
+            await tx.wait();
+            console.log('Approval successful!');
+        } else {
+            console.log('Allowance already set. Skipping approval.');
+        }
+
+        if (allowanceTwo.eq(0)) {
+            const tx = await contractTokenTwo.approve(contractAMM.address, amount);
+            await tx.wait();
+            console.log('Approval successful!');
+        } else {
+            console.log('Allowance already set. Skipping approval.');
+        }
+
         const bigNumberOne = ethers.utils.parseUnits(token1, 18);
         const bigNumberTwo = ethers.utils.parseUnits(token2, 18);
         const transaction = await contractAMM.addLiquidity(bigNumberOne, bigNumberTwo)
