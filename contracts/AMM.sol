@@ -91,12 +91,6 @@ contract AMM {
         tokenOne.transferFrom(msg.sender, address(this), _amountOne);
         tokenTwo.transferFrom(msg.sender, address(this), _amountTwo);
 
-        if (reserveOne > 0 || reserveTwo > 0) {
-            require(
-                reserveOne * _amountTwo == reserveTwo * _amountOne, "x / y != dx / dy"
-            );
-        }
-
         if (totalSupply == 0) {
             shares = _sqrt(_amountOne * _amountTwo);
         } else {
