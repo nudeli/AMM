@@ -73,13 +73,13 @@ function AddLiquidity({state}) {
     return <div className="container">
         <h1>ADD LIQUIDITY</h1>
         <p className="description">
-            Enter the amount of token1 and token2 you would like to provide
+            Enter the amount of 4300 Token 1 and 4300 Token 2 you would like to provide
         </p><br></br>
         <div className="form-container">
             <form onSubmit={addLiquidity}>
-                <label for="token 1 amount">Token1 Amount:</label>
+                <label for="token 1 amount">4300 Token 1 Amount:</label>
                 <input id="token1"></input><br></br>
-                <label for="token 2 amount">Token2 Amount:</label>
+                <label for="token 2 amount">4300 Token 2 Amount:</label>
                 <input id="token2"></input><br></br>
                 <button class="button">Add Liquidity</button>
             </form>

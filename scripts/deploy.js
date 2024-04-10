@@ -9,7 +9,7 @@ const hre = require("hardhat");
 async function main() {
   const lockTime = 60;
   const AMM = await hre.ethers.getContractFactory("AMM"); //fetching bytecode and ABI
-  const amm = await AMM.deploy("0x4D8ec41B11aa0e21c998C53D1D43A72BCCf0Fe00","0xce70B60b9A2e75C7E803A926AFa98b0F63406D57"); //Creating an instance of our smart contract
+  const amm = await AMM.deploy("0x831eF7132909De4679d4F0372FeB86458d3635FD","0x7Ad21D39c348807102f1d778520d1115F7Cf4dA1"); //Creating an instance of our smart contract
 
   await amm.deployed();
 

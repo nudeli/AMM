@@ -109,8 +109,8 @@ function Swap({state}) {
             <form onSubmit={swap}>
                 <label for="guess">Swap Direction</label>
                 <select id="swapType" name="Swap Direction">
-                    <option value="t1t2">Token1 to Token2</option>
-                    <option value="t2t1">Token2 to Token1</option>
+                    <option value="t1t2">4300 Token 1 to 4300 Token 2</option>
+                    <option value="t2t1">4300 Token 2 to 4300 Token 1</option>
                 </select><br></br>
                 <label for="payAmount">You pay:</label>
                 <input id="payAmount" 

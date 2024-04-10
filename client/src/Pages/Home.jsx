@@ -8,7 +8,7 @@ function Home({state}) {
         const {walletAddress, contractTokenOne, contractTokenTwo}=state;
 
         const bigNumberVal = ethers.utils.parseUnits("100", 18);
-        const transactionOne = await contractTokenOne.mint(walletAddress, bigNumberVal)
+        const transactionOne = await contractTokenTwo.mint(walletAddress, bigNumberVal)
         transactionOne.wait();
     }
 

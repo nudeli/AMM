@@ -27,9 +27,9 @@ function App() {
   useEffect(()=>{
     const template=async()=>{
 
-      const contractAddressAMM = "0x11AB439b8b96A837d112EBb54Ca1b8b8219893B9";
-      const contractAddressTokenOne = "0x4D8ec41B11aa0e21c998C53D1D43A72BCCf0Fe00";
-      const contractAddressTokenTwo = "0xce70B60b9A2e75C7E803A926AFa98b0F63406D57";
+      const contractAddressAMM = "0xfA82EA74610ADc26cd14b80A95D56618A48D8872";
+      const contractAddressTokenOne = "0x831eF7132909De4679d4F0372FeB86458d3635FD";
+      const contractAddressTokenTwo = "0x7Ad21D39c348807102f1d778520d1115F7Cf4dA1";
 
       const contractAbiAMM = abiAMM.abi;
       const contractAbiToken = abiToken.abi
